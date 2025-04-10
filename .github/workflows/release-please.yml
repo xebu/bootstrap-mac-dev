@@ -8,12 +8,20 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Release Please
-        uses: google-github-actions/release-please-action@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
         with:
-          release-type: simple
-          package-name: bootstrap-mac-dev
+          node-version: '16'
+
+      - name: Install Release Please
+        run: |
+          npm install -g release-please
+
+      - name: Run Release Please
+        run: |
+          release-please release --repo-url https://github.com/xebu/bootstrap-mac-dev
