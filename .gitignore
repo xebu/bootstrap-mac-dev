@@ -1,0 +1,14 @@
+.DS_Store
+__MACOSX
+*.swp
+*.swo
+*.log
+node_modules/
+.env
+dist/
+.idea/
+.vscode/
+.history/
+*.local
+*.bak
+*.tmp

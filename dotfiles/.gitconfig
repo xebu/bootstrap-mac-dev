@@ -1,0 +1,26 @@
+[user]
+  name = Your Name
+  email = your.personal@email.com
+
+[core]
+  editor = code --wait
+  excludesfile = ~/.gitignore_global
+
+[color]
+  ui = auto
+
+[alias]
+  st = status
+  co = checkout
+  br = branch
+  ci = commit
+  lg = log --oneline --graph --all
+
+[includeIf "gitdir:~/code/work/client-a/"]
+  path = ~/.gitconfig-client-a
+
+[includeIf "gitdir:~/code/work/client-b/"]
+  path = ~/.gitconfig-client-b
+
+[init]
+  defaultBranch = main
