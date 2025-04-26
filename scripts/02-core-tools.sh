@@ -30,7 +30,6 @@ brew install \
   wget \
   jq \
   httpie \
-  envsubst \
   duf \
   shfmt \
   gnupg \
@@ -41,7 +40,6 @@ brew install \
   zoxide \
   gh \
   direnv \
-  openssl@1.1 \
   openssl@3
 
 echo "🆙 Upgrading Git..."
