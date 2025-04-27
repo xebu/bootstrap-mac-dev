@@ -3,6 +3,9 @@ set -e
 
 echo "🧩 Installing GUI apps via Homebrew Cask..."
 brew install --cask \
+  google-chrome \
+  github \
+  slack \
   visual-studio-code \
   iterm2 \
   rectangle \
@@ -13,3 +16,4 @@ brew install --cask \
   ghostty \
   caffeine \
   jetbrains-toolbox \
+

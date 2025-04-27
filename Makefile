@@ -30,10 +30,10 @@ cloud:
 	./scripts/10-cloud-providers.sh
 
 fonts:
-	./scripts/10-fonts.sh
+	./scripts/11-fonts.sh
 
 personal-casks:
-	./scripts/11-personal-casks.sh
+	./scripts/12-personal-casks.sh
 
 apps:
 	./scripts/03-apps.sh
