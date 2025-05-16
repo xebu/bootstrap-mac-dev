@@ -23,8 +23,8 @@ apps=(
   ghostty
   caffeine
   jetbrains-toolbox
-  logi-options-plus
-  gpg-suite
+  # logi-options-plus
+  # gpg-suite
 )
 
 for app in "${apps[@]}"; do

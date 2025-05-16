@@ -1,9 +1,9 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 # ------------------------------------------------------------------------------
 # Installs core CLI tools and language environments:
 # - NVM (Node.js LTS)
 # - SDKMAN (for Java/Scala SDKs)
-# - Homebrew CLI utilities (git, fzf, jq, etc.)
+# - Homebrew CLI utilities (excluding Git install; upgrade only if active)
 # ------------------------------------------------------------------------------
 
 set -euo pipefail
@@ -20,14 +20,16 @@ init_nvm() {
 
 init_sdkman() {
   if [ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]; then
+    export ZSH_VERSION=""
+    set +u
     # shellcheck source=/dev/null
     source "$HOME/.sdkman/bin/sdkman-init.sh"
+    set -u
     declare -f sdk >/dev/null && return 0
   fi
   return 1
 }
 
-# Install NVM if not available
 if ! init_nvm; then
   echo "📦 Installing NVM..."
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
@@ -37,10 +39,11 @@ else
 fi
 
 echo "🔧 Installing Node.js (LTS)..."
+set +u
 nvm install --lts
 nvm use --lts
+set -u
 
-# Install SDKMAN if not available
 if ! init_sdkman; then
   echo "📦 Installing SDKMAN..."
   curl -s "https://get.sdkman.io" | bash
@@ -49,37 +52,60 @@ else
   echo "✅ SDKMAN already installed"
 fi
 
-echo "🔧 Verifying SDKMAN..."
-sdk version
+echo "🔧 Verifying SDKMAN via login shell..."
+zsh -lic "sdk version"
 
-echo "🔧 Installing core CLI tools and languages with Homebrew..."
+echo "🔍 Checking current Git version and path..."
+git_path=$(command -v git || echo "")
+git_version=$(git --version || echo "unknown")
 
-brew install \
-  git \
-  neovim \
-  vim \
-  bat \
-  delta \
-  eza \
-  tldr \
-  tree \
-  curl \
-  wget \
-  jq \
-  httpie \
-  duf \
-  shfmt \
-  gnupg \
-  go \
-  git-lfs \
-  thefuck \
-  fzf \
-  zoxide \
-  gh \
-  direnv \
+echo "Current git path: $git_path"
+echo "Git version: $git_version"
+
+if [[ "$git_path" == "/opt/homebrew/bin/git" || "$git_path" == "/usr/local/bin/git" ]]; then
+  echo "✅ Active git is Homebrew version."
+  if brew list git &>/dev/null; then
+    echo "🆙 Upgrading Homebrew Git..."
+    brew upgrade git
+  fi
+else
+  echo "⚠️ Active git is NOT the Homebrew version, skipping upgrade."
+fi
+
+packages=(
+  neovim
+  vim
+  bat
+  delta
+  eza
+  tldr
+  tree
+  curl
+  wget
+  jq
+  httpie
+  duf
+  shfmt
+  gnupg
+  go
+  git-lfs
+  thefuck
+  fzf
+  zoxide
+  gh
+  direnv
   openssl@3
+)
 
-echo "🆙 Upgrading Git..."
-brew upgrade git
+echo "🔧 Installing core CLI tools with Homebrew..."
+
+for pkg in "${packages[@]}"; do
+  if brew list "$pkg" &>/dev/null; then
+    echo "✅ $pkg already installed"
+  else
+    echo "📦 Installing $pkg..."
+    brew install "$pkg"
+  fi
+done
 
 echo "✅ Core tools, Node.js, Go, and SDKMAN installed."

@@ -3,6 +3,8 @@
 # Scripts are modular and can be run individually or grouped via targets.
 # ------------------------------------------------------------------------------
 
+SHELL := /bin/bash
+
 .PHONY: all help list bootstrap bootstrap-preview prerequisites \
         code-folders homebrew core-tools apps \
         macos-defaults ohmyzsh containers python \
@@ -51,7 +53,7 @@ homebrew:
 	scripts/01-homebrew.sh
 
 core-tools:
-	scripts/02-core-tools.sh
+	bash scripts/02-core-tools.sh
 
 apps:
 	scripts/03-apps.sh
