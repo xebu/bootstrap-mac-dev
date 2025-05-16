@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-set -e
+# ------------------------------------------------------------------------------
+# Creates standard code folders: ~/code/{learn,personal,playground,work}
+# ------------------------------------------------------------------------------
 
-echo "📂 Creating base development folders in ~/code..."
+set -euo pipefail
 
-mkdir -p ~/code/playground
-mkdir -p ~/code/personal
-mkdir -p ~/code/work
+mkdir -p ~/code/{learn,personal,playground,work}
 
-echo "✅ Code folders created: ~/code/playground, ~/code/personal, ~/code/work"
+echo "✅ Code folders created in ~/code: learn, personal, playground, work"

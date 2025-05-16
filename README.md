@@ -1,23 +1,32 @@
 # 🛠️ Bootstrap Mac Dev Environment
 
-A highly opinionated, modular, and repeatable way to bootstrap a macOS machine for development. This setup includes CLI tools, apps, language environments, and dotfiles — with sensible defaults and modular structure for easy customization.
+A highly opinionated, modular, and repeatable way to bootstrap a macOS machine for development.
+This setup includes CLI tools, apps, language environments, and dotfiles — with sensible defaults and a modular structure for easy customization.
+
+This repository provides a personal set of scripts and configuration files to automate and standardize how I set up my macOS development environment.
+
+Feel free to adapt it to your own needs.
+
+If you spot a bug, have a suggestion, or want to contribute improvements, please open an issue
 
 ---
 
-## ⚙️ Requirements
+## ⚠️ Warning
 
-- macOS (Intel or Apple Silicon)
-- Command Line Tools (`xcode-select --install`)
-- Internet connection
-- [Rosetta 2](https://support.apple.com/en-us/HT211861) (installed automatically for Apple Silicon)
-- `make` (pre-installed on macOS)
+As this bootstrap is tailored to my personal development workflow. It assumes:
+
+- You're comfortable using the terminal and command-line tools
+- You understand what each step does, or you're willing to read the source scripts
+- You accept responsibility for the changes it will make to your system
+
+**Do not use this on a production machine or a shared device unless you know exactly what you're doing.**
 
 ---
 
 ## 📦 What's Included?
 
-- ✅ Xcode & Software Updates
-- 📁 Directory Structure: `~/code/{personal,work,playground}`
+- ✅ Software Updates
+- 📁 Directory Structure: `~/code/{learn,personal,work,playground}`
 - 🍺 Homebrew (package manager)
 - 🔧 CLI Tools (e.g., `git`, `bat`, `fzf`, `zoxide`, `tldr`, `neovim`, etc.)
 - 🧠 Shell Setup (`oh-my-zsh`, Powerlevel10k, plugins)
@@ -29,6 +38,32 @@ A highly opinionated, modular, and repeatable way to bootstrap a macOS machine f
 - 💻 GUI Apps (e.g., Chrome, Firefox Dev, VSCode, iTerm2, JetBrains Toolbox, Slack, Obsidian)
 - 🎵 Optional personal apps: Discord, Signal, Zoom, Spotify, WhatsApp, NordVPN
 - 🧼 Dotfiles setup for `.zshrc`, `.p10k.zsh`, `.editorconfig`, and `gitconfig` with per-folder overrides
+
+---
+
+## ⚙️ Prerequisites
+
+Before beginning, `Xcode Command Line Tools` must be installed. These are required for `git`, `make`,`Homebrew`, and many essential development utilities.
+
+1. ✅ Install **Xcode Command Line Tools**:
+
+  ```bash
+  xcode-select --install
+  ```
+
+2. ✅ Install **macOS software updates** (via System Settings or run manually):
+
+   ```bash
+   sudo softwareupdate -ia --verbose
+   ```
+
+3. ✅ On Apple Silicon (M1/M2/M3) Macs, install **Rosetta** (for x86 CLI support):
+
+   ```bash
+   sudo softwareupdate --install-rosetta --agree-to-license
+   ```
+
+Once installed proceed to clone this repo and begin the bootstrap:
 
 ---
 
@@ -65,13 +100,12 @@ This will run all scripts in order via the `Makefile`.
 
 ## 📂 File Structure
 
-```
+```text
 .
 ├── Makefile
 ├── dotfiles/
 ├── scripts/
 │   ├── 00-create-code-folders.sh
-│   ├── 00-xcode-and-updates.sh
 │   ├── 01-homebrew.sh
 │   ├── 02-core-tools.sh
 │   ├── 03-apps.sh
@@ -80,7 +114,7 @@ This will run all scripts in order via the `Makefile`.
 │   ├── 08-containers.sh
 │   ├── 09-python.sh
 │   ├── 10-cloud-providers.sh
-│   ├── 10-fonts.sh
+│   ├── 11-fonts.sh
 │   ├── 11-personal-casks.sh
 │   ├── 97-dotfiles.sh
 │   └── 99-post-setup.sh

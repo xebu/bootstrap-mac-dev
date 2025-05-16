@@ -1,0 +1,15 @@
+# Treat shell scripts as text with LF endings
+*.sh text eol=lf
+
+# Treat config files as text with LF endings
+*.conf text eol=lf
+*.yaml text eol=lf
+*.yml  text eol=lf
+*.json text eol=lf
+*.md   text eol=lf
+*.txt  text eol=lf
+
+# Dotfiles are text too
+.* text eol=lf
+
+# Ignore executable bit changes via config (not attributes)

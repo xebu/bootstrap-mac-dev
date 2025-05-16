@@ -1,8 +1,15 @@
 #!/usr/bin/env bash
+# ------------------------------------------------------------------------------
+# Installs Homebrew and initializes it for the current shell session (Apple Silicon compatible)
+# ------------------------------------------------------------------------------
+
 set -e
 
-echo "🍺 Installing Homebrew..."
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" || echo "✅ Homebrew already installed"
+if ! command -v brew >/dev/null 2>&1; then
+  echo "🍺 Installing Homebrew..."
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+else
+  echo "✅ Homebrew already installed"
+fi
 
-echo "🔁 Setting up Homebrew in shell environment..."
 eval "$(/opt/homebrew/bin/brew shellenv)"
