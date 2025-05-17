@@ -88,6 +88,10 @@ cleanup:
 list:
 	@echo "🗂️  Available scripts:"
 	@for script in $(SCRIPTS); do echo " - $$script"; done
+	@echo ""
+	@echo "🎯 Available targets:"
+	@grep -E '^[a-zA-Z0-9_-]+:' Makefile | grep -v '\.PHONY' | sed 's/://g' | sort | xargs -n 1 echo " - "
+
 
 help:
 	@echo "Usage:"
