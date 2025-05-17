@@ -47,7 +47,7 @@ prerequisites:
 
 # Per-target runners
 code-folders:
-	scripts/00-create-code-folders
+  scripts/00-create-code-folders.sh
 
 homebrew:
 	scripts/01-homebrew.sh
