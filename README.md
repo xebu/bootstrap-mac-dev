@@ -47,17 +47,17 @@ Before beginning, `Xcode Command Line Tools` must be installed. These are requir
 
 1. ✅ Install **Xcode Command Line Tools**:
 
-   ```bash
-    xcode-select --install
+  ```bash
+  xcode-select --install
   ```
 
-2. ✅ Install **macOS software updates** (via System Settings or run manually):
+1. ✅ Install **macOS software updates** (via System Settings or run manually):
 
    ```bash
    sudo softwareupdate -ia --verbose
    ```
 
-3. ✅ On Apple Silicon (M1/M2/M3) Macs, install **Rosetta** (for x86 CLI support):
+2. ✅ On Apple Silicon (M1/M2/M3) Macs, install **Rosetta** (for x86 CLI support):
 
    ```bash
    sudo softwareupdate --install-rosetta --agree-to-license
