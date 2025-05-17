@@ -50,21 +50,21 @@ fi
 # -------------------------------
 # Vercel CLI (via npm)
 # -------------------------------
-if command -v vercel >/dev/null; then
-  echo "✅ Vercel CLI already installed"
-else
-  echo "📦 Installing Vercel CLI via npm..."
-  npm install -g vercel
-fi
+# if command -v vercel >/dev/null; then
+#   echo "✅ Vercel CLI already installed"
+# else
+#   echo "📦 Installing Vercel CLI via npm..."
+#   npm install -g vercel
+# fi
 
 # -------------------------------
 # Cloudflare Wrangler
 # -------------------------------
-if brew list wrangler &>/dev/null; then
-  echo "✅ Cloudflare Wrangler already installed"
-else
-  brew install wrangler
-fi
+# if brew list wrangler &>/dev/null; then
+#   echo "✅ Cloudflare Wrangler already installed"
+# else
+#   brew install wrangler
+# fi
 
 # -------------------------------
 # Optional tools (commented out)
