@@ -6,9 +6,9 @@
 SHELL := /bin/bash
 
 .PHONY: all help list bootstrap bootstrap-preview prerequisites \
-        code-folders homebrew core-tools apps \
-        macos-defaults ohmyzsh containers python \
-        cloud tooling fonts personal dotfiles cleanup
+				code-folders homebrew core-tools apps \
+				macos-defaults ohmyzsh containers python \
+				cloud tooling fonts personal dotfiles cleanup
 
 # Master script list
 SCRIPTS = \
@@ -47,7 +47,7 @@ prerequisites:
 
 # Per-target runners
 code-folders:
-  scripts/00-create-code-folders.sh
+	scripts/00-create-code-folders.sh
 
 homebrew:
 	scripts/01-homebrew.sh
