@@ -47,8 +47,8 @@ Before beginning, `Xcode Command Line Tools` must be installed. These are requir
 
 1. ✅ Install **Xcode Command Line Tools**:
 
-  ```bash
-  xcode-select --install
+   ```bash
+    xcode-select --install
   ```
 
 2. ✅ Install **macOS software updates** (via System Settings or run manually):
