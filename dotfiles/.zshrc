@@ -2,7 +2,9 @@
 export ZSH="$HOME/.oh-my-zsh"
 
 # Set theme
-ZSH_THEME="robbyrussell"
+# ZSH_THEME="robbyrussell"
+ZSH_THEME="powerlevel10k/powerlevel10k"
+
 
 # Enable plugins
 plugins=(
