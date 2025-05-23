@@ -16,6 +16,7 @@ FILES=(
   .gitconfig
   .gitignore_global
   .editorconfig
+  .p10k.zsh
 )
 
 for file in "${FILES[@]}"; do
