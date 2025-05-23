@@ -73,28 +73,29 @@ else
 fi
 
 packages=(
-  neovim
-  vim
   bat
-  delta
-  eza
-  tldr
-  tree
   curl
-  wget
-  jq
-  httpie
+  delta
+  diff-so-easy
+  direnv
   duf
-  shfmt
+  eza
+  fzf
+  gh
+  git-lfs
   gnupg
   go
-  git-lfs
-  thefuck
-  fzf
-  zoxide
-  gh
-  direnv
+  httpie
+  jq
+  neovim
   openssl@3
+  shfmt
+  thefuck
+  tldr
+  tree
+  vim
+  wget
+  zoxide
 )
 
 echo "🔧 Installing core CLI tools with Homebrew..."

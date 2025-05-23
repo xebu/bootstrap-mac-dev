@@ -6,18 +6,18 @@
 SHELL := /bin/bash
 
 .PHONY: all help list bootstrap bootstrap-preview prerequisites \
-				code-folders homebrew core-tools apps \
-				macos-defaults ohmyzsh containers python \
-				cloud tooling fonts personal dotfiles cleanup
+        code-folders homebrew ohmyzsh core-tools apps \
+        macos-defaults containers python cloud fonts personal dotfiles cleanup
 
 # Master script list
 SCRIPTS = \
-	scripts/00-create-code-folders \
+	scripts/00-create-code-folders.sh \
 	scripts/01-homebrew.sh \
-	scripts/02-core-tools.sh \
-	scripts/03-apps.sh \
+	scripts/02-ohmyzsh.sh \
+	scripts/03-core-tools.sh \
 	scripts/04-macos-defaults.sh \
-	scripts/05-ohmyzsh.sh \
+	scripts/05-apps.sh \
+	scripts/06-client-tools.sh \
 	scripts/08-containers.sh \
 	scripts/09-python.sh \
 	scripts/10-cloud-providers-and-dev-tools.sh \
@@ -47,43 +47,43 @@ prerequisites:
 
 # Per-target runners
 code-folders:
-	scripts/00-create-code-folders.sh
+	./scripts/00-create-code-folders.sh
 
 homebrew:
-	scripts/01-homebrew.sh
-
-core-tools:
-	bash scripts/02-core-tools.sh
-
-apps:
-	scripts/03-apps.sh
-
-macos-defaults:
-	scripts/04-macos-defaults.sh
+	./scripts/01-homebrew.sh
 
 ohmyzsh:
-	scripts/05-ohmyzsh.sh
+	./scripts/02-ohmyzsh.sh
+
+core-tools:
+	./scripts/03-core-tools.sh
+
+apps:
+	./scripts/05-apps.sh
+
+macos-defaults:
+	./scripts/04-macos-defaults.sh
 
 containers:
-	scripts/08-containers.sh
+	./scripts/08-containers.sh
 
 python:
-	scripts/09-python.sh
+	./scripts/09-python.sh
 
 cloud:
-	scripts/10-cloud-providers-and-dev-tools.sh
+	./scripts/10-cloud-providers-and-dev-tools.sh
 
 fonts:
-	scripts/11-fonts.sh
+	./scripts/11-fonts.sh
 
 personal:
-	scripts/12-personal-casks.sh
+	./scripts/12-personal-casks.sh
 
 dotfiles:
-	scripts/97-dotfiles.sh
+	./scripts/97-dotfiles.sh
 
 cleanup:
-	scripts/99-post-setup.sh
+	./scripts/99-post-setup.sh
 
 list:
 	@echo "🗂️  Available scripts:"
@@ -92,16 +92,15 @@ list:
 	@echo "🎯 Available targets:"
 	@grep -E '^[a-zA-Z0-9_-]+:' Makefile | grep -v '\.PHONY' | sed 's/://g' | sort | xargs -n 1 echo " - "
 
-
 help:
 	@echo "Usage:"
 	@echo "  make                   - Run full bootstrap"
 	@echo "  make <target>          - Run an individual step"
 	@echo "  make bootstrap-preview - Show the list of scripts without executing"
 	@echo "  make prerequisites     - Ensure scripts are executable"
-	@echo "  make list              - List all script files"
+	@echo "  make list              - List all script files and targets"
 	@echo "  make help              - Show this help message"
 	@echo ""
 	@echo "Targets:"
-	@echo "  code-folders homebrew core-tools apps macos-defaults"
-	@echo "  ohmyzsh containers python cloud fonts personal dotfiles cleanup"
+	@echo "  code-folders homebrew ohmyzsh core-tools apps macos-defaults"
+	@echo "  containers python cloud fonts personal dotfiles cleanup"

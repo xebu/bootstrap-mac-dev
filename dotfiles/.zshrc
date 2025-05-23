@@ -6,7 +6,16 @@ ZSH_THEME="robbyrussell"
 
 # Enable plugins
 plugins=(
+  brew
+  extract
+  eza
+  fzf
   git
+  httpie
+  kubectl
+  kubectx
+  terraform
+  tldr
   z
   zsh-autosuggestions
   zsh-syntax-highlighting
@@ -21,6 +30,11 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+# SDKMan setup
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 # Custom aliases
 alias ll="ls -lah"
