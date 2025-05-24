@@ -101,23 +101,30 @@ This will run all scripts in order via the `Makefile`.
 ## 📂 File Structure
 
 ```text
+
 .
+├── dotfiles
 ├── Makefile
-├── dotfiles/
-├── scripts/
-│   ├── 00-create-code-folders.sh
-│   ├── 01-homebrew.sh
-│   ├── 02-core-tools.sh
-│   ├── 03-apps.sh
-│   ├── 04-macos-defaults.sh
-│   ├── 05-ohmyzsh.sh
-│   ├── 08-containers.sh
-│   ├── 09-python.sh
-│   ├── 10-cloud-providers.sh
-│   ├── 11-fonts.sh
-│   ├── 11-personal-casks.sh
-│   ├── 97-dotfiles.sh
-│   └── 99-post-setup.sh
+├── README.md
+├── scripts
+│   ├── 00-create-code-folders.sh
+│   ├── 01-homebrew.sh
+│   ├── 02-ohmyzsh.sh
+│   ├── 03-core-tools.sh
+│   ├── 04-macos-defaults.sh
+│   ├── 05-apps.sh
+│   ├── 06-client-tools.sh
+│   ├── 08-containers.sh
+│   ├── 09-python.sh
+│   ├── 10-cloud-providers-and-dev-tools.sh
+│   ├── 11-fonts.sh
+│   ├── 12-personal-casks.sh
+│   ├── 97-dotfiles.sh
+│   ├── 99-post-setup.sh
+│   └── README.md
+└── templates
+    ├── Pipfile
+    └── pyproject.toml
 ```
 
 ---
