@@ -82,12 +82,14 @@ packages=(
   eza
   fzf
   gh
+  git-filter-repo
   git-lfs
   gnupg
   go
   httpie
   jq
   neovim
+  pnpm
   openssl@3
   shfmt
   thefuck
