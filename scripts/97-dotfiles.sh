@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # ------------------------------------------------------------------------------
 # Symlinks dotfiles from ./dotfiles/ to $HOME.
+# Git files are linked from ./dotfiles/git/
 # Also copies `.gitconfig-client-a.template` to ~/.gitconfig-client-a if missing.
 # ------------------------------------------------------------------------------
 
@@ -10,11 +11,10 @@ echo "🔗 Linking dotfiles..."
 
 DOTFILES_DIR="$PWD/dotfiles"
 
+# Zsh, Editor, Powerlevel10k
 FILES=(
   .zshrc
   .zprofile
-  .gitconfig
-  .gitignore_global
   .editorconfig
   .p10k.zsh
 )
@@ -31,19 +31,24 @@ for file in "${FILES[@]}"; do
   fi
 done
 
-# Handle gitconfig-client-a.template
-TEMPLATE="$DOTFILES_DIR/.gitconfig-client-a.template"
-TARGET="$HOME/.gitconfig-client-a"
+# Git-related files
+GITFILES=(
+  .gitconfig
+  .gitignore_global
+  .gitconfig-client-a.example
+  .gitconfig-client-b.example
+)
 
-if [ -f "$TEMPLATE" ]; then
-  if [ -f "$TARGET" ]; then
-    echo "✅ .gitconfig-client-a already exists — not overwriting"
+for file in "${GITFILES[@]}"; do
+  src="$DOTFILES_DIR/git/$file"
+  dest="$HOME/$file"
+
+  if [ -e "$src" ]; then
+    ln -sf "$src" "$dest"
+    echo "✅ Linked $file"
   else
-    cp "$TEMPLATE" "$TARGET"
-    echo "📝 Copied .gitconfig-client-a.template to $TARGET"
+    echo "⚠️  Skipped $file — not found in $DOTFILES_DIR/git"
   fi
-else
-  echo "⚠️  Template .gitconfig-client-a.template not found — skipping"
-fi
+done
 
 echo "🏁 Dotfiles linking complete."
