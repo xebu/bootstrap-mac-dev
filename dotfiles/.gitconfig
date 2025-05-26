@@ -3,7 +3,7 @@
   email = your.personal@email.com
 
 [core]
-  editor = code --wait
+	editor = vim
   excludesfile = ~/.gitignore_global
 
 [color]
