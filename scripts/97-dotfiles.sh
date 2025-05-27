@@ -51,17 +51,4 @@ for file in "${GITFILES[@]}"; do
   fi
 done
 
-# iTerm2 Preferences
-echo "🖥  Linking iTerm2 preferences..."
-
-ITERM_SRC="$DOTFILES_DIR/iterm2/com.googlecode.iterm2.plist"
-ITERM_DEST="$HOME/Library/Preferences/com.googlecode.iterm2.plist"
-
-if [ -e "$ITERM_SRC" ]; then
-  ln -sf "$ITERM_SRC" "$ITERM_DEST"
-  echo "✅ Linked iTerm2 preferences"
-else
-  echo "⚠️  Skipped iTerm2 — no plist found at $ITERM_SRC"
-fi
-
 echo "🏁 Dotfiles linking complete."
