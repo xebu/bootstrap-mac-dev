@@ -19,6 +19,8 @@ defaults write com.apple.finder AppleShowAllFiles -bool true
 defaults write com.apple.finder ShowPathbar -bool true
 defaults write com.apple.finder ShowStatusBar -bool true
 defaults write com.apple.finder QuitMenuItem -bool true
+defaults write NSGlobalDomain "NSTableViewDefaultSizeMode" -int "1"
+defaults write com.apple.finder "_FXSortFoldersFirst" -bool "true"
 
 # -------------------------------
 # Dock settings
@@ -31,6 +33,7 @@ defaults write com.apple.dock tilesize -int 36
 defaults write com.apple.dock mineffect -string "scale"
 defaults write com.apple.dock minimize-to-application -bool true
 defaults write com.apple.dock show-process-indicators -bool true
+defaults write com.apple.dock "orientation" -string "left"
 
 # -------------------------------
 # Menu bar: icons and indicators
@@ -55,6 +58,11 @@ defaults write com.apple.menuextra.clock DateFormat -string "EEE MMM d  H.mm"
 # -------------------------------
 echo "🖱️ Setting scrollbars to always show..."
 defaults write -g AppleShowScrollBars -string "Always"
+
+# -------------------------------
+# Mission controll
+# -------------------------------
+defaults write com.apple.dock "mru-spaces" -bool "false"
 
 # -------------------------------
 # Restart affected services
