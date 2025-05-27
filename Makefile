@@ -43,7 +43,16 @@ bootstrap-preview:
 
 # Utility: ensure scripts are executable
 prerequisites:
-	chmod +x scripts/*.sh
+	@chmod +x scripts/*.sh
+	@echo "✅ Scripts made executable"
+
+	@if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then \
+		echo "⚙️  Disabling file mode tracking for this repo..."; \
+		git config --local core.fileMode false; \
+		echo "✅ Git local setting applied: core.fileMode=false"; \
+	else \
+		echo "ℹ️  Not in a Git repo — skipping local Git config"; \
+	fi
 
 # Per-target runners
 code-folders:

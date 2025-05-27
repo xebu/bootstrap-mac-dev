@@ -1,16 +1,12 @@
 #!/usr/bin/env bash
-# ------------------------------------------------------------------------------
-# Installs Docker Desktop and essential Kubernetes CLI tools:
-# - Docker (via Homebrew Cask)
-# - kind, helm, lazydocker, k9s, stern
-# ------------------------------------------------------------------------------
-
 set -euo pipefail
 
 echo "🐳 Installing Docker Desktop..."
 
 if brew list --cask docker &>/dev/null; then
-  echo "✅ Docker already installed"
+  echo "✅ Docker already installed via Homebrew"
+elif [ -d "/Applications/Docker.app" ]; then
+  echo "✅ Docker.app already exists — skipping Homebrew install"
 else
   brew install --cask docker
 fi

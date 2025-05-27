@@ -1,6 +1,9 @@
+# ------------------------------------------------------------------------------
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
+# ------------------------------------------------------------------------------
+
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -9,16 +12,13 @@ fi
 export ZSH="$HOME/.oh-my-zsh"
 
 # Set theme
-# ZSH_THEME="robbyrussell"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-
-# Enable plugins
+# Enable plugins (fzf removed)
 plugins=(
   brew
   extract
   eza
-  fzf
   git
   httpie
   kubectl
@@ -30,10 +30,19 @@ plugins=(
   zsh-syntax-highlighting
 )
 
+# Load Oh My Zsh
 source $ZSH/oh-my-zsh.sh
 
 # Homebrew path for Apple Silicon
 eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Enable fzf key bindings and completion (installed via Homebrew)
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Enable 'thefuck' alias as 'pls' if available
+if command -v thefuck &>/dev/null; then
+  eval "$(thefuck --alias pls)"
+fi
 
 # NVM setup
 export NVM_DIR="$HOME/.nvm"
@@ -41,7 +50,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 # SDKMan setup
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+# THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 

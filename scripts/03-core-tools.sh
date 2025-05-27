@@ -11,7 +11,6 @@ set -euo pipefail
 init_nvm() {
   export NVM_DIR="$HOME/.nvm"
   if [ -s "$NVM_DIR/nvm.sh" ]; then
-    # shellcheck source=/dev/null
     source "$NVM_DIR/nvm.sh"
     declare -f nvm >/dev/null && return 0
   fi
@@ -22,7 +21,6 @@ init_sdkman() {
   if [ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]; then
     export ZSH_VERSION=""
     set +u
-    # shellcheck source=/dev/null
     source "$HOME/.sdkman/bin/sdkman-init.sh"
     set -u
     declare -f sdk >/dev/null && return 0
@@ -76,7 +74,7 @@ packages=(
   bat
   curl
   delta
-  diff-so-easy
+  diff-so-fancy  # updated from diff-so-easy
   direnv
   duf
   eza
@@ -107,8 +105,23 @@ for pkg in "${packages[@]}"; do
     echo "✅ $pkg already installed"
   else
     echo "📦 Installing $pkg..."
-    brew install "$pkg"
+    if ! brew install "$pkg"; then
+      echo "⚠️  Failed to install $pkg — skipping"
+    fi
   fi
 done
 
-echo "✅ Core tools, Node.js, Go, and SDKMAN installed."
+# Optional post-install: setup fzf bindings
+if [[ " ${packages[*]} " == *" fzf "* ]]; then
+  echo "⚙️  Running fzf install script to enable key bindings and completion..."
+  yes | "$(brew --prefix)"/opt/fzf/install
+fi
+
+echo ""
+echo "🎉 Bootstrap complete!"
+echo "✅ Node: $(node -v)"
+echo "✅ npm:  $(npm -v)"
+echo "✅ Git:  $(git --version)"
+echo "✅ Go:   $(go version | awk '{print $3}')"
+
+echo "ℹ️ Please restart your terminal or run: source ~/.zshrc"

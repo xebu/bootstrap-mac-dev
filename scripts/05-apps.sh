@@ -28,8 +28,12 @@ apps=(
 )
 
 for app in "${apps[@]}"; do
+  app_path="/Applications/$(echo "$app" | sed 's/-/ /g; s/\b\(.\)/\u\1/g').app"
+
   if brew list --cask "$app" &>/dev/null; then
-    echo "✅ $app already installed"
+    echo "✅ $app already installed via Homebrew"
+  elif [ -d "$app_path" ]; then
+    echo "✅ $app_path already exists — skipping Homebrew install"
   else
     echo "📦 Installing $app..."
     brew install --cask "$app"

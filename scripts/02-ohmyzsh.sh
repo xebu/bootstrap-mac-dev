@@ -55,13 +55,14 @@ if [ -L "$ZSHRC" ] || command -v yadm >/dev/null || command -v chezmoi >/dev/nul
 else
   if ! grep -q '^ZSH_THEME="powerlevel10k/powerlevel10k"' "$ZSHRC"; then
     echo '🎨 Setting Powerlevel10k as default theme...'
-    sed -i '' 's/^ZSH_THEME=.*/ZSH_THEME="powerlevel10k\\/powerlevel10k"/' "$ZSHRC"
+    sed -i '' "s/^ZSH_THEME=.*/ZSH_THEME=\"powerlevel10k\/powerlevel10k\"/" "$ZSHRC"
   fi
 
   if ! grep -q 'zsh-autosuggestions' "$ZSHRC"; then
     echo '🔌 Enabling recommended plugins...'
-    sed -i '' 's/^plugins=.*/plugins=(git zsh-autosuggestions zsh-syntax-highlighting)/' "$ZSHRC"
+    sed -i '' "s/^plugins=.*/plugins=(git zsh-autosuggestions zsh-syntax-highlighting)/" "$ZSHRC"
   fi
 fi
+
 
 echo "✅ Oh My Zsh setup complete: plugins and theme installed."
