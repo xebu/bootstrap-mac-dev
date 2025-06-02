@@ -39,13 +39,20 @@ else
 fi
 
 # -------------------------------
-# Terraform
+# tfenv (Terraform version manager)
 # -------------------------------
-if brew list terraform &>/dev/null; then
-  echo "✅ Terraform already installed"
+if brew list tfenv &>/dev/null; then
+  echo "✅ tfenv already installed"
 else
-  brew install terraform
+  brew install tfenv
 fi
+# Ensure tfenv is in PATH
+export PATH="$HOME/.tfenv/bin:$PATH"
+
+# Install and use the latest Terraform version
+tfenv install latest
+tfenv use latest
+tfenv list > ~/.terraform-version
 
 # -------------------------------
 # Vercel CLI (via npm)
