@@ -39,6 +39,13 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # Enable fzf key bindings and completion (installed via Homebrew)
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# Enhance fzf with fd if available
+if command -v fd &>/dev/null; then
+  export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+  export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+  export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
+fi
+
 # Enable 'thefuck' alias as 'pls' if available
 if command -v thefuck &>/dev/null; then
   eval "$(thefuck --alias pls)"

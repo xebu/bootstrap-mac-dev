@@ -78,6 +78,7 @@ packages=(
   direnv
   duf
   eza
+  fd
   fzf
   gh
   git-filter-repo
@@ -89,6 +90,7 @@ packages=(
   neovim
   pnpm
   openssl@3
+  ripgrep
   shfmt
   thefuck
   tldr
